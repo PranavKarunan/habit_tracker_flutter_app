@@ -30,7 +30,7 @@ class HabitService extends ChangeNotifier {
 
     if (habit == null) return;
 
-    habit.completed = !habit.completed;
+    habit.isCompleted = !habit.isCompleted;
 
     habit.save();
 

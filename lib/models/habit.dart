@@ -8,7 +8,26 @@ class Habit extends HiveObject {
   String name;
 
   @HiveField(1)
-  bool completed;
+  bool isCompleted;
 
-  Habit({required this.name, this.completed = false});
+  @HiveField(2)
+  String emoji;
+
+  @HiveField(3)
+  String category;
+
+  @HiveField(4)
+  String frequency;
+
+  @HiveField(5)
+  String reminderTime;
+
+  Habit({
+    required this.name,
+    this.isCompleted = false,
+    this.emoji = "✅",
+    this.category = "Personal",
+    this.frequency = "Daily",
+    this.reminderTime = "",
+  });
 }

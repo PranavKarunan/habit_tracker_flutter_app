@@ -4,77 +4,80 @@ import '../theme/app_colors.dart';
 class GreetingCard extends StatelessWidget {
   const GreetingCard({super.key});
 
-  String getGreeting() {
+  String greeting() {
     final hour = DateTime.now().hour;
 
-    if (hour < 12) {
-      return "Good Morning ☀️";
-    } else if (hour < 17) {
-      return "Good Afternoon 🌤️";
-    } else {
-      return "Good Evening 🌙";
-    }
-  }
+    if (hour < 12) return "Good Morning ☀️";
 
-  String getDate() {
-    final now = DateTime.now();
+    if (hour < 17) return "Good Afternoon 🌤";
 
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    return "${months[now.month - 1]} ${now.day}, ${now.year}";
+    return "Good Evening 🌙";
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      width: double.infinity,
+
+      padding: const EdgeInsets.all(24),
+
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(28),
+
         gradient: const LinearGradient(
-          colors: [AppColors.primary, Color(0xFF8B5CF6)],
+          colors: [Color(0xff6366F1), Color(0xff8B5CF6)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(24),
       ),
-      child: Row(
+
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  getGreeting(),
-                  style: const TextStyle(color: Colors.white70, fontSize: 16),
+          Row(
+            children: [
+              const CircleAvatar(
+                radius: 28,
+                backgroundColor: Colors.white24,
+                child: Icon(Icons.person, color: Colors.white),
+              ),
+
+              const SizedBox(width: 16),
+
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+
+                  children: [
+                    Text(
+                      greeting(),
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 15,
+                      ),
+                    ),
+
+                    const SizedBox(height: 4),
+
+                    const Text(
+                      "Pranav",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 26,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 8),
-                const Text(
-                  "Pranav",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(getDate(), style: const TextStyle(color: Colors.white70)),
-              ],
-            ),
+              ),
+            ],
           ),
-          const CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.white24,
-            child: Icon(Icons.person, size: 32, color: Colors.white),
+
+          const SizedBox(height: 30),
+
+          Text(
+            "Let's build great habits today 💪",
+            style: TextStyle(color: Colors.white.withOpacity(.9), fontSize: 18),
           ),
         ],
       ),
